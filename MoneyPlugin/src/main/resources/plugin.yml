@@ -1,0 +1,28 @@
+name: MoneyPlugin
+main: com.yuta.money.MoneyPlugin
+version: 1.0.0.0:1
+api-version: 1.20
+author: Yuta
+
+commands:
+  sell:
+    description: 鉱石を売るコマンド
+    usage: /sell
+  shop:
+    description: ショップを開くコマンド
+    usage: /shop
+  money:
+    description: 所持金を確認するコマンド
+    usage: /money
+  pay:
+    description: 人にお金を渡すコマンド
+    usage: /pay [Player] [Amount]
+  want:
+    description: 人にお金を渡して欲しいというリクエストを送るコマンド
+    usage: /want [Player] [Amount]
+  money_all:
+    description: 全員の所持金を確認するコマンド(運営用)
+    usage: /money_all
+  setmoney:
+    description: プレイヤーの所持金を設定するコマンド(OP専用、1分に1回)
+    usage: /setmoney [Player] [Amount]
