@@ -1,0 +1,31 @@
+shop:
+  武器:
+    icon: DIAMOND_SWORD
+    items:
+      DIAMOND_PICKAXE:
+        display: "ダイヤのツルハシ"
+        amount: 1
+        price: 20
+        genre: ["武器"]
+      ARROW:
+        display: "矢 x16"
+        amount: 16
+        price: 1
+        genre: ["武器"]
+
+  回復:
+    icon: GOLDEN_APPLE
+    items:
+      GOLDEN_APPLE:
+        display: "金のリンゴ"
+        amount: 1
+        price: 10
+        genre: ["回復"]
+
+  防具:
+    icon: DIAMOND_CHESTPLATE
+    items: {}
+
+  資材:
+    icon: OAK_PLANKS
+    items: {}
