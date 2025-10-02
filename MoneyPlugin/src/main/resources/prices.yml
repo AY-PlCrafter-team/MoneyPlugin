@@ -1,63 +1,211 @@
+# アイテムの売値
+# 価格変動を有効にするには、最小価格(min)と最大価格(max)を定義します。
+# minとmaxを同じ値にすると、価格は変動しません。
 prices:
   # 石系ブロック
-  STONE: 0.1
-  COBBLESTONE: 0.1
-  ANDESITE: 0.1
-  DIORITE: 0.1
-  GRANITE: 0.1
-  TUFF: 0.1
-  DEEPSLATE: 0.1
-  CALCITE: 0.1
-  DRIPSTONE_BLOCK: 0.1
-  BASALT: 0.1
-  BLACKSTONE: 0.1
-  NETHERRACK: 0.1
-  END_STONE: 0.1
+  STONE:
+    normal: 0.10
+    min: 0.08
+    max: 0.12
+  COBBLESTONE:
+    normal: 0.10
+    min: 0.08
+    max: 0.12
+  ANDESITE:
+    normal: 0.10
+    min: 0.08
+    max: 0.12
+  DIORITE:
+    normal: 0.10
+    min: 0.08
+    max: 0.12
+  GRANITE:
+    normal: 0.10
+    min: 0.08
+    max: 0.12
+  TUFF:
+    normal: 0.10
+    min: 0.08
+    max: 0.12
+  DEEPSLATE:
+    normal: 0.10
+    min: 0.08
+    max: 0.12
+  CALCITE:
+    normal: 0.10
+    min: 0.08
+    max: 0.12
+  DRIPSTONE_BLOCK:
+    normal: 0.10
+    min: 0.08
+    max: 0.12
+  BASALT:
+    normal: 0.10
+    min: 0.08
+    max: 0.12
+  BLACKSTONE:
+    normal: 0.10
+    min: 0.08
+    max: 0.12
+  NETHERRACK:
+    normal: 0.10
+    min: 0.08
+    max: 0.12
+  END_STONE:
+    normal: 0.10
+    min: 0.08
+    max: 0.12
 
   # 石炭
-  COAL_ORE: 0.16
-  COAL_BLOCK: 2.16
-  COAL: 0.2
+  COAL_ORE:
+    normal: 0.16
+    min: 0.13
+    max: 0.19
+  COAL_BLOCK:
+    normal: 2.16
+    min: 1.73
+    max: 2.59
+  COAL:
+    normal: 0.20
+    min: 0.16
+    max: 0.24
 
   # 銅
-  COPPER_ORE: 1.0
-  COPPER_BLOCK: 10.8
-  COPPER_INGOT: 1.2
+  RAW_COPPER:
+    normal: 0.80
+    min: 0.64
+    max: 0.96
+  COPPER_ORE:
+    normal: 1.00
+    min: 0.80
+    max: 1.20
+  COPPER_BLOCK:
+    normal: 10.80
+    min: 8.64
+    max: 12.96
+  COPPER_INGOT:
+    normal: 1.20
+    min: 0.96
+    max: 1.44
 
   # 金
-  GOLD_ORE: 1.2
-  GOLD_BLOCK: 17.28
-  GOLD_INGOT: 1.5
+  RAW_GOLD:
+    normal: 0.90
+    min: 0.72
+    max: 1.08
+  GOLD_ORE:
+    normal: 1.20
+    min: 0.96
+    max: 1.44
+  GOLD_BLOCK:
+    normal: 17.28
+    min: 13.82
+    max: 20.74
+  GOLD_INGOT:
+    normal: 1.50
+    min: 1.20
+    max: 1.80
 
   # 鉄
-  IRON_ORE: 3.4
-  IRON_BLOCK: 36.72
-  IRON_INGOT: 4.2
+  RAW_IRON:
+    normal: 2.80
+    min: 2.24
+    max: 3.36
+  IRON_ORE:
+    normal: 3.40
+    min: 2.72
+    max: 4.08
+  IRON_BLOCK:
+    normal: 36.72
+    min: 29.38
+    max: 44.06
+  IRON_INGOT:
+    normal: 4.20
+    min: 3.36
+    max: 5.04
 
   # レッドストーン
-  REDSTONE_ORE: 0.4
-  REDSTONE_BLOCK: 5.4
-  REDSTONE: 0.5
+  REDSTONE_ORE:
+    normal: 0.40
+    min: 0.32
+    max: 0.48
+  REDSTONE_BLOCK:
+    normal: 5.40
+    min: 4.32
+    max: 6.48
+  REDSTONE:
+    normal: 0.50
+    min: 0.40
+    max: 0.60
 
   # ラピスラズリ
-  LAPIS_ORE: 1.04
-  LAPIS_BLOCK: 14.04
-  LAPIS_LAZULI: 1.3
+  LAPIS_ORE:
+    normal: 1.04
+    min: 0.83
+    max: 1.25
+  LAPIS_BLOCK:
+    normal: 14.04
+    min: 11.23
+    max: 16.85
+  LAPIS_LAZULI:
+    normal: 1.30
+    min: 1.04
+    max: 1.56
 
   # エメラルド
-  EMERALD_ORE: 1.04
-  EMERALD_BLOCK: 14.04
-  EMERALD: 1.3
+  EMERALD_ORE:
+    normal: 1.04
+    min: 0.83
+    max: 1.25
+  EMERALD_BLOCK:
+    normal: 14.04
+    min: 11.23
+    max: 16.85
+  EMERALD:
+    normal: 1.30
+    min: 1.04
+    max: 1.56
 
   # ダイヤモンド
-  DIAMOND_ORE: 7.2
-  DIAMOND_BLOCK: 97.2
-  DIAMOND: 9.0
+  DIAMOND_ORE:
+    normal: 7.20
+    min: 5.76
+    max: 8.64
+  DIAMOND_BLOCK:
+    normal: 97.20
+    min: 77.76
+    max: 116.64
+  DIAMOND:
+    normal: 9.00
+    min: 7.20
+    max: 10.80
 
   # ネザー
-  NETHER_QUARTZ_ORE: 2.0
-  QUARTZ_BLOCK: 27.0
-  ANCIENT_DEBRIS: 10.0
-  NETHERITE_BLOCK: 108.0
-  NETHERITE_INGOT: 55.0
-  NETHERITE_SCRAP: 12.0
+  NETHER_QUARTZ_ORE:
+    normal: 2.00
+    min: 1.60
+    max: 2.40
+  QUARTZ:
+    normal: 3.00
+    min: 2.40
+    max: 3.60
+  QUARTZ_BLOCK:
+    normal: 27.00
+    min: 21.60
+    max: 32.40
+  ANCIENT_DEBRIS:
+    normal: 10.00
+    min: 8.00
+    max: 12.00
+  NETHERITE_BLOCK:
+    normal: 108.00
+    min: 86.40
+    max: 129.60
+  NETHERITE_INGOT:
+    normal: 55.00
+    min: 44.00
+    max: 66.00
+  NETHERITE_SCRAP:
+    normal: 12.00
+    min: 9.60
+    max: 14.40

@@ -1,29 +1,37 @@
 name: MoneyPlugin
 main: com.yuta.money.MoneyPlugin
-version: 1.1.0.0-pre1
+version: 1.1.0.0-pre2
 api-version: '1.20'
-money-unit: KP
+author: yuta25912
 
 commands:
   money:
-    description: Show your balance
+    description: 自分の所持金を表示します。
+    usage: /money
   money_all:
-    description: Show balances of all players (OP)
+    description: 全プレイヤーの所持金を表示します。(OP専用)
+    usage: /money_all
   pay:
-    description: Pay money to another player
-    usage: /pay <player> <amount>
+    description: 他のプレイヤーにお金を支払います。
+    usage: /pay <プレイヤー名> <金額>
   want:
-    description: Ask money from another player
-    usage: /want <player> <amount>
+    description: 他のプレイヤーにお金を要求します。
+    usage: /want <プレイヤー名> <金額>
   sell:
-    description: Open selling GUI
+    description: アイテム売却用のGUIを開きます。
+    usage: /sell
   shop:
-    description: Open shop
+    description: ショップを開きます。
+    usage: /shop
   setmoney:
-    description: Set player's money (OP)
-    usage: /setmoney <player> <amount>
+    description: プレイヤーの所持金を設定します。(OP専用)
+    usage: /setmoney <プレイヤー名> <金額>
   pocket:
-    description: Open shared pocket chest
+    description: 共有のPocketチェストを開きます。
+    usage: /pocket
   setprices:
-    description: Set sell price for material (OP)
-    usage: /setprices <MATERIAL_ID> <price>
+    description: アイテムの価格と日本語名を設定します。(OP専用)
+    usage: /setprices <アイテムID> <日本語名> <min> <通常価格> <max>
+  request:
+    description: 運営に要望を送信します。
+    usage: /request <要望内容>

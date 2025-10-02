@@ -1,31 +1,256 @@
 shop:
-  武器:
+  ツール・実用品:
     icon: DIAMOND_SWORD
     items:
+      IRON_SWORD:
+        display: "鉄の剣"
+        amount: 1
+        price: 10
+        genre: ["ツール・実用品"]
+      IRON_PICKAXE:
+        display: "鉄のツルハシ"
+        amount: 1
+        price: 10
+        genre: ["ツール・実用品"]
+      IRON_SHOVEL:
+        display: "鉄のシャベル"
+        amount: 1
+        price: 10
+        genre: ["ツール・実用品"]
+      IRON_AXE:
+        display: "鉄の斧"
+        amount: 1
+        price: 10
+        genre: ["ツール・実用品"]
+      IRON_HOE:
+        display: "鉄のクワ"
+        amount: 1
+        price: 10
+        genre: ["ツール・実用品"]
+      FISHING_ROD:
+        display: "釣り竿"
+        amount: 1
+        price: 10
+        genre: ["ツール・実用品"]
       DIAMOND_PICKAXE:
         display: "ダイヤのツルハシ"
         amount: 1
+        price: 30
+        genre: ["ツール・実用品"]
+      BUCKET:
+        display: "空のバケツ"
+        amount: 1
+        price: 15
+        genre: ["ツール・実用品"]
+      WATER_BUCKET:
+        display: "水入りバケツ"
+        amount: 1
+        price: 15
+        genre: ["ツール・実用品"]
+      LAVA_BUCKET:
+        display: "溶岩入りバケツ"
+        amount: 1
+        price: 15
+        genre: ["ツール・実用品"]
+      POWDER_SNOW_BUCKET:
+        display: "粉雪入りバケツ"
+        amount: 1
+        price: 15
+        genre: ["ツール・実用品"]
+      FLINT_AND_STEEL:
+        display: "火打石と打ち金"
+        amount: 1
         price: 20
-        genre: ["武器"]
-      ARROW:
-        display: "矢 x16"
-        amount: 16
-        price: 1
-        genre: ["武器"]
+        genre: ["ツール・実用品"]
+      OAK_BOAT:
+        display: "オークのボート"
+        amount: 1
+        price: 10
+        genre: ["ツール・実用品"]
+      TOURCH:
+        display: "松明 32個"
+        amount: 32
+        price: 10
+        genre: ["その他"]
 
-  回復:
+  戦闘:
+    icon: BOW
+    items:
+      BOW:
+        display: "弓"
+        amount: 1
+        price: 5
+        genre: ["戦闘"]
+      ARROW:
+        display: "矢 16本"
+        amount: 16
+        price: 5
+        genre: ["戦闘"]
+      SHIELD:
+        display: "盾"
+        amount: 1
+        price: 5
+        genre: ["戦闘"]
+
+  食料:
     icon: GOLDEN_APPLE
     items:
+      BREAD:
+        display: "パン 16個"
+        amount: 16
+        price: 8
+        genre: ["食料"]
+      COOKED_BEEF:
+        display: "ステーキ 16個"
+        amount: 16
+        price: 20
+        genre: ["食料"]
       GOLDEN_APPLE:
         display: "金のリンゴ"
         amount: 1
+        price: 50
+        genre: ["食料"]
+
+  ブロック:
+    icon: GRASS_BLOCK
+    items:
+      GRASS_BLOCK:
+        display: "草ブロック 16個"
+        amount: 16
+        price: 2
+        genre: ["ブロック"]
+      DIRT:
+        display: "土 16個"
+        amount: 16
+        price: 2
+        genre: ["ブロック"]
+      OAK_PLANKS:
+        display: "オークの板材 16個"
+        amount: 16
+        price: 2
+        genre: ["ブロック"]
+      STONE:
+        display: "石 16個"
+        amount: 16
+        price: 2
+        genre: ["ブロック"]
+      COBBLESTONE:
+        display: "丸石 16個"
+        amount: 16
+        price: 2
+        genre: ["ブロック"]
+      NETHERRACK:
+        display: "ネザーラック 16個"
+        amount: 16
+        price: 2
+        genre: ["ブロック"]
+      END_STONE:
+        display: "エンドストーン 16個"
+        amount: 16
+        price: 2
+        genre: ["ブロック"]
+      OBSIDIAN:
+        display: "黒曜石 8個"
+        amount: 8
+        price: 15
+        genre: ["ブロック"]
+
+  装備:
+    icon: IRON_CHESTPLATE
+    items:
+      IRON_Helmet:
+        display: "鉄のヘルメット"
+        amount: 1
+        price: 22
+        genre: ["装備"]
+      IRON_CHESTPLATE:
+        display: "鉄のチェストプレート"
+        amount: 1
+        price: 35
+        genre: ["装備"]
+      IRON_LEGGINGS:
+        display: "鉄のレギンス"
+        amount: 1
+        price: 27
+        genre: ["装備"]
+      IRON_BOOTS:
+        display: "鉄のレギンス"
+        amount: 1
+        price: 18
+        genre: ["装備"]
+  
+  エンチャント:
+    icon: EXPERIENCE_BOTTLE
+    items:
+      EXPERIENCE_BOTTLE:
+        display: "エンチャントの瓶 16個"
+        amount: 16
+        price: 20
+        genre: ["エンチャント"]
+      POTION{Potion:Regeneration}:
+        display: "再生のポーション"
+        amount: 1
+        price: 5
+        genre: ["エンチャント"]
+  
+  特殊:
+    icon: NETHER_STAR
+    items:
+      ENDER_PEARL:
+        display: "エンダーパール 8個"
+        amount: 8
+        price: 15
+        genre: ["特殊"]
+  
+  鉱石:
+    icon: DIAMOND
+    items:
+      COAL:
+        display: "石炭"
+        amount: 1
+        price: 1
+        genre: ["鉱石"]
+      REDSTONE:
+        display: "レッドストーンダスト"
+        amount: 1
+        price: 1
+        genre: ["鉱石"]
+      LAPIS_LAZULI:
+        display: "ラピスラズリ"
+        amount: 1
+        price: 1.5
+        genre: ["鉱石"]
+      EMERALD:
+        display: "エメラルド"
+        amount: 1
+        price: 1.5
+        genre: ["鉱石"]
+      IRON_INGOT:
+        display: "鉄のインゴット"
+        amount: 1
+        price: 5
+        genre: ["鉱石"]
+      DIAMOND:
+        display: "ダイヤモンド"
+        amount: 1
         price: 10
-        genre: ["回復"]
+        genre: ["鉱石"]
 
-  防具:
-    icon: DIAMOND_CHESTPLATE
-    items: {}
-
-  資材:
-    icon: OAK_PLANKS
-    items: {}
+  その他:
+    icon: WHITE_WOOL
+    items:
+      CRAFTING_TABLE:
+        display: "作業台"
+        amount: 1
+        price: 2
+        genre: ["その他"]
+      CHEST:
+        display: "チェスト"
+        amount: 1
+        price: 2
+        genre: ["その他"]
+      FURNACE:
+        display: "かまど"
+        amount: 1
+        price: 2
+        genre: ["その他"]

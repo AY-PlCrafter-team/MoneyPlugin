@@ -6,7 +6,7 @@
 
     <groupId>com.yuta</groupId>
     <artifactId>MoneyPlugin</artifactId>
-    <version>1.1.0.0-pre1</version>
+    <version>1.1.0.0-pre2</version>
     <packaging>jar</packaging>
 
     <name>MoneyPlugin</name>

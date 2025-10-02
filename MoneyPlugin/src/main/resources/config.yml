@@ -1,0 +1,34 @@
+# MoneyPlugin 設定ファイル
+
+# 使用する通貨単位
+money-unit: "KP"
+
+# 各機能の有効/無効を切り替えます。
+features:
+  shop: true
+  pocket: true
+
+price-fluctuation:
+  # 価格変動機能の有効/無効
+  enabled: true
+  # 価格を更新する頻度（分単位）
+  interval-minutes: 10
+  # 一度の更新で価格が変動するアイテムの割合 (例: 0.2 = 20%)
+  update-ratio: 0.2
+  # 価格更新時に全プレイヤーに通知するか
+  broadcast-message-on-update: true
+  # 通知するメッセージ (&でカラーコード使用可)
+  broadcast-message: "&6【お知らせ】市場のアイテム価格が変動しました！"
+  # ボスバータイマーの設定
+  bossbar-timer:
+    enabled: true
+    # ボスバーに表示するテキスト。%time% が残り時間(MM:SS)に置き換わります。
+    title: "&e次の価格更新まで &f%time%"
+
+# 価格表示スコアボードに表示するアイテムのリスト
+scoreboard-prices:
+  - "DIAMOND"
+  - "GOLD_INGOT"
+  - "IRON_INGOT"
+  - "STONE"
+  - "COBBLESTONE"
