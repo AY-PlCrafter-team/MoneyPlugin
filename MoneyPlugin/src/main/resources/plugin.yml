@@ -35,3 +35,6 @@ commands:
   request:
     description: 運営に要望を送信します。
     usage: /request <要望内容>
+  ranking:
+    description: 指定した項目のランキングを表示します。
+    usage: /ranking <money|playtime>

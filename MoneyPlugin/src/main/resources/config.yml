@@ -18,7 +18,7 @@ price-fluctuation:
   # 価格更新時に全プレイヤーに通知するか
   broadcast-message-on-update: true
   # 通知するメッセージ (&でカラーコード使用可)
-  broadcast-message: "&6【お知らせ】市場のアイテム価格が変動しました！"
+  broadcast-message: "&6【お知らせ】アイテム価格が変動しました！"
   # ボスバータイマーの設定
   bossbar-timer:
     enabled: true
@@ -27,8 +27,17 @@ price-fluctuation:
 
 # 価格表示スコアボードに表示するアイテムのリスト
 scoreboard-prices:
-  - "DIAMOND"
-  - "GOLD_INGOT"
-  - "IRON_INGOT"
-  - "STONE"
-  - "COBBLESTONE"
+  - COAL
+  - RAW_COPPER
+  - COPPER_INGOT
+  - RAW_IRON
+  - IRON_INGOT
+  - RAW_GOLD
+  - GOLD_INGOT
+  - EMERALD
+  - REDSTONE
+  - LAPIS_LAZULI
+  - DIAMOND
+  - QUARTZ
+  - NETHERITE_INGOT
+  - ANCIENT_DEBRIS

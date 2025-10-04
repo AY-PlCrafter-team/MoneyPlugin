@@ -4,57 +4,57 @@
 prices:
   # 石系ブロック
   STONE:
-    normal: 0.10
-    min: 0.08
-    max: 0.12
+    normal: 0.01
+    min: 0.01
+    max: 0.02
   COBBLESTONE:
-    normal: 0.10
-    min: 0.08
-    max: 0.12
+    normal: 0.01
+    min: 0.01
+    max: 0.02
   ANDESITE:
-    normal: 0.10
-    min: 0.08
-    max: 0.12
+    normal: 0.01
+    min: 0.01
+    max: 0.02
   DIORITE:
-    normal: 0.10
-    min: 0.08
-    max: 0.12
+    normal: 0.01
+    min: 0.01
+    max: 0.02
   GRANITE:
-    normal: 0.10
-    min: 0.08
-    max: 0.12
+    normal: 0.01
+    min: 0.01
+    max: 0.02
   TUFF:
-    normal: 0.10
-    min: 0.08
-    max: 0.12
+    normal: 0.01
+    min: 0.01
+    max: 0.02
   DEEPSLATE:
-    normal: 0.10
-    min: 0.08
-    max: 0.12
+    normal: 0.01
+    min: 0.01
+    max: 0.02
   CALCITE:
-    normal: 0.10
-    min: 0.08
-    max: 0.12
+    normal: 0.01
+    min: 0.01
+    max: 0.02
   DRIPSTONE_BLOCK:
-    normal: 0.10
-    min: 0.08
-    max: 0.12
+    normal: 0.01
+    min: 0.01
+    max: 0.02
   BASALT:
-    normal: 0.10
-    min: 0.08
-    max: 0.12
+    normal: 0.01
+    min: 0.01
+    max: 0.02
   BLACKSTONE:
-    normal: 0.10
-    min: 0.08
-    max: 0.12
+    normal: 0.01
+    min: 0.01
+    max: 0.02
   NETHERRACK:
-    normal: 0.10
-    min: 0.08
-    max: 0.12
+    normal: 0.01
+    min: 0.01
+    max: 0.02
   END_STONE:
-    normal: 0.10
-    min: 0.08
-    max: 0.12
+    normal: 0.01
+    min: 0.01
+    max: 0.02
 
   # 石炭
   COAL_ORE:

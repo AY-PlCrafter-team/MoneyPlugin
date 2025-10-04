@@ -33,6 +33,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.*;
+import org.bukkit.util.StringUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,10 +43,11 @@ import java.text.SimpleDateFormat;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 public class MoneyPlugin extends JavaPlugin implements Listener {
 
-    // --- データ関連 ---
+    // --- データ関連 --- 
     private static final Map<UUID, Double> balances = new HashMap<>();
     private static final Map<UUID, String> playerNames = new HashMap<>();
     private static final Map<UUID, Integer> playTimes = new HashMap<>();
@@ -53,14 +55,14 @@ public class MoneyPlugin extends JavaPlugin implements Listener {
     private static final Map<Material, Double> currentPrices = new HashMap<>();
     private static final Map<Material, String> itemNames = new HashMap<>();
 
-    // --- インベントリ・選択状態関連 ---
+    // --- インベントリ・選択状態関連 --- 
     private final Map<UUID, Inventory> sellInventories = new HashMap<>();
     private final Map<UUID, Inventory> shopInventories = new HashMap<>();
     private final Map<UUID, String> shopGenreSelections = new HashMap<>();
     private final Map<UUID, Long> setMoneyCooldowns = new HashMap<>();
     private Inventory pocket; // 共有チェスト
 
-    // --- 設定ファイル関連 ---
+    // --- 設定ファイル関連 --- 
     private File pricesFile;
     private FileConfiguration pricesConfig;
     private File shopFile;
@@ -72,15 +74,15 @@ public class MoneyPlugin extends JavaPlugin implements Listener {
     private File requestsFile;
     private FileConfiguration requestsConfig;
 
-    // --- プラグイン設定 ---
+    // --- プラグイン設定 --- 
     private String moneyUnit = "KP";
     private List<Material> scoreboardPriceMaterials = new ArrayList<>();
 
-    // --- スコアボード関連 ---
+    // --- スコアボード関連 --- 
     private enum ScoreboardType { RANKING, PRICES }
     private ScoreboardType currentScoreboardType = ScoreboardType.RANKING;
 
-    // --- ボスバー関連 ---
+    // --- ボスバー関連 --- 
     private BossBar priceUpdateBossBar;
     private long nextFluctuationTime;
     private long fluctuationInterval;
@@ -217,6 +219,15 @@ public class MoneyPlugin extends JavaPlugin implements Listener {
 
     // コマンドを登録する
     private void registerCommands() {
+        getCommand("pay").setTabCompleter(this);
+        getCommand("want").setTabCompleter(this);
+        getCommand("setmoney").setTabCompleter(this);
+        getCommand("request").setTabCompleter(this);
+        getCommand("setprices").setTabCompleter(this);
+        getCommand("ranking").setTabCompleter(this);
+        getCommand("money").setTabCompleter(this);
+        getCommand("money_all").setTabCompleter(this);
+        getCommand("sell").setTabCompleter(this);
         getCommand("shop").setTabCompleter(this);
         getCommand("pocket").setTabCompleter(this);
     }
@@ -257,18 +268,82 @@ public class MoneyPlugin extends JavaPlugin implements Listener {
                 new BossBarUpdateTask().runTaskTimer(this, 0L, 20L); // 1秒ごとに更新
             }
         }
+
+        // プレイヤーデータの自動保存タスク (1分ごと)
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                saveBalances();
+            }
+        }.runTaskTimer(this, 1200L, 1200L); // 1分 = 1200tick
     }
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         String cmdName = command.getName().toLowerCase();
+
+        // 機能が無効なコマンドは補完しない
         if (cmdName.equals("shop") && !getConfig().getBoolean("features.shop", true)) {
             return Collections.emptyList();
         }
         if (cmdName.equals("pocket") && !getConfig().getBoolean("features.pocket", true)) {
             return Collections.emptyList();
         }
-        return null;
+
+        final String currentArg = args[args.length - 1].toLowerCase();
+
+        switch (cmdName) {
+            case "pay":
+            case "want":
+            case "setmoney":
+                if (args.length == 1) {
+                    return StringUtil.copyPartialMatches(currentArg, Bukkit.getOnlinePlayers().stream().map(Player::getName).collect(Collectors.toList()), new ArrayList<>());
+                } else if (args.length == 2) {
+                    return Collections.singletonList("<金額>");
+                } else {
+                    return Collections.emptyList();
+                }
+
+            case "request":
+                if (args.length == 1) {
+                    return Collections.singletonList("<内容>");
+                }
+                return Collections.emptyList(); // 2語目以降は補完しない
+
+            case "setprices":
+                if (args.length == 1) {
+                    return StringUtil.copyPartialMatches(currentArg, Arrays.stream(Material.values()).map(Material::name).collect(Collectors.toList()), new ArrayList<>());
+                } else if (args.length == 2) {
+                    return Collections.singletonList("<日本語名>");
+                } else if (args.length == 3) {
+                    return Collections.singletonList("<最小価格>");
+                } else if (args.length == 4) {
+                    return Collections.singletonList("<通常価格>");
+                } else if (args.length == 5) {
+                    return Collections.singletonList("<最大価格>");
+                } else {
+                    return Collections.emptyList();
+                }
+
+            case "ranking":
+                if (args.length == 1) {
+                    return StringUtil.copyPartialMatches(currentArg, Arrays.asList("money", "playtime"), new ArrayList<>());
+                } else {
+                    return Collections.emptyList();
+                }
+
+            // 引数なしコマンド
+            case "money":
+            case "money_all":
+            case "sell":
+            case "shop":
+            case "pocket":
+                return Collections.emptyList();
+
+            default:
+                // デフォルトの補完に任せる
+                return null;
+        }
     }
 
     @Override
@@ -523,6 +598,49 @@ public class MoneyPlugin extends JavaPlugin implements Listener {
                     e.printStackTrace();
                 }
                 return true;
+
+            case "ranking":
+                if (args.length != 1) {
+                    sender.sendMessage(ChatColor.RED + "使用方法: /ranking <money|playtime>");
+                    return true;
+                }
+
+                if (args[0].equalsIgnoreCase("money")) {
+                    sender.sendMessage(ChatColor.GOLD + "--- 所持金ランキング ---");
+                    List<Map.Entry<UUID, Double>> sortedMoney = new ArrayList<>(balances.entrySet());
+                    sortedMoney.sort((e1, e2) -> e2.getValue().compareTo(e1.getValue()));
+
+                    int rank_m = 1;
+                    for (Map.Entry<UUID, Double> entry : sortedMoney) {
+                        if (rank_m > 10) break; // 表示件数を10件に制限
+                        String name = playerNames.getOrDefault(entry.getKey(), "不明なプレイヤー");
+                        sender.sendMessage(String.format("%d位: %s - %s %s", rank_m, name, formatAmount(entry.getValue()), moneyUnit));
+                        rank_m++;
+                    }
+
+                } else if (args[0].equalsIgnoreCase("playtime")) {
+                    sender.sendMessage(ChatColor.AQUA + "--- プレイ時間ランキング ---");
+                    List<Map.Entry<UUID, Integer>> sortedPlaytime = new ArrayList<>(playTimes.entrySet());
+                    sortedPlaytime.sort((e1, e2) -> e2.getValue().compareTo(e1.getValue()));
+
+                    int rank_p = 1;
+                    for (Map.Entry<UUID, Integer> entry : sortedPlaytime) {
+                        if (rank_p > 10) break; // 表示件数を10件に制限
+                        String name = playerNames.getOrDefault(entry.getKey(), "不明なプレイヤー");
+                        int totalSeconds = entry.getValue();
+                        long hours = totalSeconds / 3600;
+                        long minutes = (totalSeconds % 3600) / 60;
+                        long seconds = totalSeconds % 60;
+                        String timeFormatted = String.format("%d時間 %02d分 %02d秒", hours, minutes, seconds);
+
+                        sender.sendMessage(String.format("%d位: %s - %s", rank_p, name, timeFormatted));
+                        rank_p++;
+                    }
+
+                } else {
+                    sender.sendMessage(ChatColor.RED + "使用方法: /ranking <money|playtime>");
+                }
+                return true;
         }
         return false;
     }
@@ -638,7 +756,7 @@ public class MoneyPlugin extends JavaPlugin implements Listener {
                             Material mat = Material.matchMaterial(key);
                             if (mat != null) {
                                 player.getInventory().addItem(new ItemStack(mat, amount));
-                                player.sendMessage(ChatColor.GREEN + display + " を購入しました！(- " +
+                                player.sendMessage(ChatColor.GREEN + display + " を購入しました！(-" +
                                         formatAmount(price) + moneyUnit + ")");
                             } else {
                                 player.sendMessage(ChatColor.RED + "アイテムが見つかりません: " + key);
@@ -892,7 +1010,6 @@ public class MoneyPlugin extends JavaPlugin implements Listener {
 
         try {
             balancesConfig.save(balancesFile);
-            getLogger().info(allUuids.size() + "人分のプレイヤーデータを保存しました。");
         } catch (IOException e) {
             getLogger().severe("balances.ymlへのデータ保存に失敗しました。");
             e.printStackTrace();
